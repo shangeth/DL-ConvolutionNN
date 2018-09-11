@@ -44,10 +44,10 @@ class CNN:
         return Z3
 
     def compute_cost(self, Z3, Y):
-        cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_ v2(logits=Z3, labels=Y))
+        cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=Z3, labels=Y))
         return cost
 
-    def fit(self,X_train, Y_train, X_test, Y_test, learning_rate = 0.009,
+    def fit(self,X_train, Y_train, X_test, Y_test, learning_rate = 0.01,
           num_epochs = 100, minibatch_size = 64, print_cost = True):
         ops.reset_default_graph()                         # to be able to rerun the model without overwriting tf variables
         tf.set_random_seed(1)                             # to keep results consistent (tensorflow seed)
@@ -80,7 +80,7 @@ class CNN:
                     _ , temp_cost =  sess.run([optimizer, cost],feed_dict={X:minibatch_X,Y:minibatch_Y})
                     minibatch_cost += temp_cost / num_minibatches
 
-                if print_cost == True and epoch % 5 == 0:
+                if print_cost == True and epoch % 50 == 0:
                     print ("Cost after epoch %i: %f" % (epoch, minibatch_cost))
                 if print_cost == True and epoch % 1 == 0:
                     costs.append(minibatch_cost)

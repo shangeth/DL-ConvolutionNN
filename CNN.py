@@ -8,6 +8,7 @@ from scipy import ndimage
 import tensorflow as tf
 from tensorflow.python.framework import ops
 from cnn_utils import *
+from cnn import CNN
 
 
 np.random.seed(1)
@@ -44,7 +45,7 @@ def main():
 
 
 
-    from cnn import CNN
+
 
     clf = CNN()
     clf.fit(X_train, Y_train, X_test, Y_test)
